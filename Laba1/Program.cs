@@ -3,21 +3,21 @@
         Taa taa = new Taa();
         int task = -1;
         Console.WriteLine("Выберете задачу: ");
-        enterNum(1, 20, task);
+        task = enterNum(1, 20);
         int n = 0;
         switch (task) {
             //1.2
             case 1: 
-                enterNum(10, n);
+                n = enterNum(10);
                 int sum = taa.sumLastNums(n);
-                Console.WriteLine("Сумма полседних двух цифр числа " + n + " = " + sum);
+                Console.WriteLine("Сумма последних двух цифр числа " + n + " = " + sum);
                 break;
 
             case 2:
                 //1.4
-                enterNum(n);
+                n = enterNum();
                 if (taa.isPositive(n)) Console.WriteLine("Число " + n + " - положительное.");
-                else Console.WriteLine("Число " + n + " - отричательное");
+                else Console.WriteLine("Число " + n + " - отрицательное");
                 break;
             case 3:
                 //1.6
@@ -34,54 +34,54 @@
                     Console.WriteLine("неверный ввод, попробуйте ещё раз: ");
                 }
                 if (taa.isUpperCase(symbol)) Console.WriteLine(symbol + " - заглаваня буква.");
-                else Console.WriteLine(symbol + " - строчная буква.");
+                else Console.WriteLine(symbol + " - строчная буква английского алфавита или другой символ.");
                 break;
             case 4:
                 //1.8
                 int a = 0, b = 0;
-                enterNum(a);
-                enterNum(b);
+                a = enterNum();
+                b = enterNum();
                 if (taa.isDivisor(a, b)) Console.WriteLine("одно из двух чисел - делитель другого.");
                 else Console.WriteLine("числа не деляться без остатка друг на друга");
                 break;
             case 5:
                 //1.10
-                enterNum(a = 0);
-                enterNum(b = 0);
+                a = enterNum();
+                b = enterNum();
                 for (int i = 0; i < 4; i++)
                 {
                     a = taa.lastNumSum(a, b);
-                    if (i != 3) enterNum(b);
+                    if (i != 3) b = enterNum();
                 }
                 Console.WriteLine("ответ: " + a);
                 break;
             case 6:
                 //2.2
                 int x = 0, y = 0;
-                enterNum(x);
-                enterNum(y);
+                x = enterNum();    
+                y = enterNum();
                 double answer = taa.safeDiv(x, y);
                 if (answer == 0 && x != 0) Console.WriteLine("деление на 0");
                 else Console.WriteLine(x + " разделить на " + y + " = " + answer);
                 break;
             case 7:
                 //2.4
-                enterNum(x = 0);
-                enterNum(y = 0);
-                taa.makeDecision(x, y);
+                x = enterNum();
+                y = enterNum();
+                Console.WriteLine(taa.makeDecision(x, y));
                 break;
             case 8:
                 //2.6
                 int z = 0;
-                enterNum(x = 0);
-                enterNum(y = 0);
-                enterNum(z);
+                x = enterNum();
+                y = enterNum();
+                z = enterNum();
                 if (taa.sum3(x, y, z)) Console.WriteLine("два числа в сумме дают третье.");
                 else Console.WriteLine("нет пары числел сумма которых дает третье.");
                 break;
             case 9:
                 //2.8
-                enterNum(0, x = 0);
+                x = enterNum(0);
                 string result = taa.age(x);
                 Console.WriteLine(result);
                 break;
@@ -98,26 +98,26 @@
                 break;
             case 11:
                 //3.2
-                enterNum(x = 0);
+                x = enterNum();
                 string s = taa.reverseListNums(x);
                 Console.WriteLine("Результат: " + s);
                 break;
             case 12:
                 //3.4
-                enterNum(x = 0);
-                enterNum(0, y = 0);
+                x = enterNum();
+                y = enterNum(0);
                 answer = taa.pow(x, y);
                 Console.WriteLine("{0} в степени {1} = {2}.", x, y, answer);
                 break;
             case 13:
                 //3.6
-                enterNum(x = 0);
+                x = enterNum();
                 if (taa.equalNum(x)) Console.WriteLine("все цифры в числе {0} однинаковы.", x);
                 else Console.WriteLine("в числе {0} есть разные цифры", x);
                 break;
             case 14:
                 //3.8
-                enterNum(1, x = 0);
+                x = enterNum(1);
                 taa.leftTriangle(x);
                 break;
             case 15:
@@ -128,41 +128,41 @@
                 //4.2
                 int[] arr = enterArray();
                 Console.WriteLine("Введите элемент массива, позицию которого вы хотите найти.");
-                enterNum(x = 0);
+                x = enterNum();
                 int index = taa.findLast(arr, x);
                 if (index == -1) Console.WriteLine("Элемента {0} нет в массиве.", x);
-                else Console.WriteLine("Элемент {0} находиться в данном массиве по индексу - {1}", x, index);
+                else Console.WriteLine("Последнее вхождение элемента {0} находиться в данном массиве по индексу - {1}", x, index);
                 break;
             case 17:
                 //4.4
                 arr = enterArray();
                 int pos = 0;
                 Console.WriteLine("Ввод элемента для вставки в массив.");
-                enterNum(x = 0);
+                x = enterNum();
                 Console.WriteLine("Ввод индекса вставки в массив.");
-                enterNum(0, arr.Length, pos);
+                pos = enterNum(0, arr.Length - 1);
 
                 int[] newArr = taa.add(arr, x, pos);
-                for (int i = 0; i < newArr.Length; i++) Console.WriteLine(newArr[i] + " ");
+                for (int i = 0; i < newArr.Length; i++) Console.Write(newArr[i] + " ");
                 break;
             case 18:
                 //4.6
                 arr = enterArray();
                 taa.reverse(arr);
-                for (int i = 0; i < arr.Length; i++) Console.WriteLine(arr[i] + " ");
+                for (int i = 0; i < arr.Length; i++) Console.Write(arr[i] + " ");
                 break;
             case 19:
                 //4.8
                 arr = enterArray();
                 int[] arr2 = enterArray();
                 newArr = taa.concat(arr, arr2);
-                for(int i = 0; i < newArr.Length; i++) Console.WriteLine(arr[i] + " ");
+                for(int i = 0; i < newArr.Length; i++) Console.Write(newArr[i] + " ");
                 break;
             case 20:
                 //4.10
                 arr = enterArray();
                 newArr = taa.deleteNegative(arr);
-                for (int i = 0; i < newArr.Length; i++) Console.WriteLine(arr[i] + " ");
+                for (int i = 0; i < newArr.Length; i++) Console.Write(newArr[i] + " ");
                 break;
         }
     }
@@ -170,24 +170,24 @@
     private static int[] enterArray()
     {
         Console.WriteLine("Ввод размерности массива.");
-        int x = 0;
-        enterNum(1, x);
+        int x = enterNum(1);
         int[] arr = new int[x];
         for (int i = 0; i < arr.Length; i++)
         {
-            Console.WriteLine("Ввод {0}-ого элемента массива: ");
-            enterNum(arr[i]);
+            Console.WriteLine("Ввод {0}-ого элемента массива: ", i);
+            arr[i] = enterNum();
         }
         return arr;
     }
 
-    private static void enterNum(int left, int right, int n)
+    private static int enterNum(int left, int right)
     {
+        int n;
         Console.WriteLine("Введите число от {0} до {1}: ", left, right);
         while (true)
         {
             var input = Console.ReadLine();
-            if (int.TryParse(input, out n) && n <= right && n >= left) break;
+            if (int.TryParse(input, out n) && n <= right && n >= left) return n;
 
             else
             {
@@ -197,29 +197,31 @@
 
         }
     }
-    private static void enterNum(int left, int n)
+    private static int enterNum(int left)
     {
+        int n;
         Console.WriteLine("Введите число от {0}: ", left);
         while (true)
         {
             var input = Console.ReadLine();
-            if (int.TryParse(input, out n) && n >= left) break;
+            if (int.TryParse(input, out n) && n >= left) return n;
 
             else
             {
                 Console.WriteLine("неверный ввод");
-                Console.WriteLine("введите число от {0} до {1} повторно: ", left);
+                Console.WriteLine("введите число от {0} повторно: ", left);
             }
 
         }
     }
-    public static void enterNum(int n)
+    public static int enterNum()
     {
+        int n;
         Console.WriteLine("Введите число: ");
         while (true)
         {
             var input = Console.ReadLine();
-            if (int.TryParse(input, out n)) break;
+            if (int.TryParse(input, out n)) return n;
 
             else
             {
@@ -247,7 +249,7 @@
     //1.6
     public bool isUpperCase(char x)
     {
-        return (x > 65 && x < 90);
+        return (x >= 65 && x <= 90);
     }
 
     //1.8
@@ -293,13 +295,13 @@
         {
             s = "год";
         }
-        else if (x % 10 > 1 && x % 10 < 5 && x < 15 && x > 11)
+        else if (x % 10 > 1 && x % 10 < 5 && (x > 15 || x < 11))
         {
             s = "года";
         }
         else s = "лет";
 
-        return string.Format("{0} " + s);
+        return string.Format("{0} " + s, x);
     }
 
     //2.10  
@@ -360,14 +362,14 @@
         String s = String.Format("{0}", x);
         if (x > 0)
         {
-            for (int i  = x; i  >= 0; i--)
+            for (int i  = x - 1; i  >= 0; i--)
             {
                 s += " " + String.Format("{0}", i);
             }
         }
         if (x < 0)
         {
-            for (int i = x; i <= 0; i++)
+            for (int i = x + 1; i <= 0; i++)
             {
                 s += " " + String.Format("{0}", i);
             }
@@ -392,7 +394,7 @@
     {
         string s = String.Format("{0}", x);
         char digit = Convert.ToChar(String.Format("{0}", x % 10));
-        return (s.Length != s.Count(c => c == digit));
+        return (s.Length == s.Count(c => c == digit));
     }
 
     //3.8
@@ -400,8 +402,9 @@
     {
         for (int i = 0; i < x; i++)
         {
-            for (int j = 0; j < i; j++)
-                Console.WriteLine("*");
+            for (int j = 0; j <= i; j++)
+                Console.Write("*");
+            Console.WriteLine();
         }
     }
 
@@ -411,10 +414,10 @@
         Random rnd = new Random();
         int guessNum = rnd.Next(0, 10);
         int userNum = -1;
-        int i = 1;
+        int i = 0;
         while (guessNum != userNum)
         {
-            enterNum(0, 9, userNum);
+            userNum = enterNum(0, 9);
             i++;
             if (guessNum == userNum)
             {
@@ -425,7 +428,7 @@
                 Console.WriteLine("Вы не угадали.");
             }
         }
-        Console.WriteLine(string.Format("Вы угадали за {0} попытки"), i);
+        Console.WriteLine("Вы угадали за {0} попытки", i);
     }
 
     //4.2
@@ -448,13 +451,13 @@
     {
         int[] newArr = new int[arr.Length + 1];
         int isAdd = 0;
-        for (int i = 0; i < newArr.Length; i++) {
+        for (int i = 0; i < arr.Length; i++) {
             if (i == pos)
             {
                 newArr[i] = x;
                 isAdd++;
             }
-            newArr[i] = arr[i+isAdd];
+            newArr[i + isAdd] = arr[i];
         }
         return newArr;
     }
@@ -462,7 +465,6 @@
     //4.6
     public void reverse(int[] arr)
     {
-        //Array.Reverse(arr);
         for(int i = arr.Length - 1;i >= 0;i--)
         {
             int buufer = arr[arr.Length - 1 - i];
@@ -475,7 +477,6 @@
     public int[] concat(int[] arr1, int[] arr2)
     {
         int[] newArr = new int[arr1.Length + arr2.Length];
-        //newArr = arr1.Concat(arr2).ToArray();
         for (int i = 0; i < arr1.Length; i++)
         {
             newArr[i] = arr1[i];
@@ -490,11 +491,21 @@
     //4.10
     public int[] deleteNegative(int[] arr)
     {
-        int[] newArr = new int[arr.Length];
-        for (int i = 0; i <= arr.Length; i++)
+        int length = 0;
+        for (int i = 0; i < arr.Length; i++)
         {
             if (arr[i] >= 0)
-                newArr[i] = arr[i];
+                length++;
+        }
+        int[] newArr = new int[length];
+        int j = 0;
+        for (int i = 0; i < arr.Length; i++)
+        {
+            if (arr[i] >= 0)
+            {
+                newArr[j] = arr[i];
+                j++;
+            }
         }
         return newArr;
     }
