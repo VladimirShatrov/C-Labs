@@ -8,7 +8,7 @@
         switch (task) {
             //1.2
             case 1: 
-                n = enterNum(10);
+                n = enterNumNotIncludingGap(-10, 10);
                 int sum = taa.sumLastNums(n);
                 Console.WriteLine("Сумма последних двух цифр числа " + n + " = " + sum);
                 break;
@@ -17,7 +17,7 @@
                 //1.4
                 n = enterNum();
                 if (taa.isPositive(n)) Console.WriteLine("Число " + n + " - положительное.");
-                else Console.WriteLine("Число " + n + " - отрицательное");
+                else Console.WriteLine("Число " + n + " - не положительное");
                 break;
             case 3:
                 //1.6
@@ -222,7 +222,7 @@
         while (true)
         {
             var input = Console.ReadLine();
-            if (int.TryParse(input, out n) && (n > right || n < left)) return n;
+            if (int.TryParse(input, out n) && (n >= right || n <= left)) return n;
 
             else
             {
@@ -255,7 +255,9 @@
     {
         int digit1 = x % 100 / 10;
         int digit2 = x % 100 % 10;
-        return digit1 + digit2;
+        int s = digit1 + digit2;
+        if (s >= 0) return s;
+        else return -s;
     }
 
     //1.4
@@ -281,7 +283,7 @@
     //1.10
     public int lastNumSum(int a, int b)
     {
-        return a % 10 + b % 10;
+        return Math.Abs(a % 10) + Math.Abs(b % 10);
     }
 
     //2.2
@@ -301,9 +303,7 @@
 
     //2.6
     public bool sum3(int x, int y, int z) {
-        if (x + y == z || x + z == y || y + z == x) return true;
-
-        return false;
+        return (x + y == z || x + z == y || y + z == x);
     }
 
     //2.8
@@ -325,7 +325,6 @@
     //2.10  
     public void printDays(String x)
     {
-        //string[] days = new string[7];
         string[] days = { "понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье"};
         switch (x) {
             case "понедельник":
@@ -365,10 +364,6 @@
                 }
                 break;
             case "воскресенье":
-                for (int i = 7; i < 7; i++)
-                {
-                    Console.WriteLine(days[i]);
-                }
                 break;
             default: Console.Error.WriteLine("это не день недели");
             break;
@@ -380,7 +375,7 @@
         String s = String.Format("{0}", x);
         if (x > 0)
         {
-            for (int i  = x - 1; i  >= 0; i--)
+            for (int i = x - 1; i  >= 0; i--)
             {
                 s += " " + String.Format("{0}", i);
             }
@@ -483,7 +478,7 @@
     //4.6
     public void reverse(int[] arr)
     {
-        for(int i = arr.Length - 1;i >= 0;i--)
+        for(int i = arr.Length - 1;i > (arr.Length - 1) / 2; i--)
         {
             int buufer = arr[arr.Length - 1 - i];
             arr[arr.Length - 1 - i] = arr[i];
@@ -501,7 +496,7 @@
         }
         for (int i = 0; i < arr2.Length; i++)
         {
-            newArr[i+ arr1.Length] = arr2[i];
+            newArr[i + arr1.Length] = arr2[i];
         }
         return newArr;
     }
