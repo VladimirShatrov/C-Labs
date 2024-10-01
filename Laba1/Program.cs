@@ -214,6 +214,24 @@
 
         }
     }
+
+    private static int enterNumNotIncludingGap(int left, int right)
+    {
+        int n;
+        Console.WriteLine("Введите число до {0} или от {1}: ", left, right);
+        while (true)
+        {
+            var input = Console.ReadLine();
+            if (int.TryParse(input, out n) && (n > right || n < left)) return n;
+
+            else
+            {
+                Console.WriteLine("неверный ввод");
+                Console.WriteLine("введите число до {0} или от {1} повторно: ", left, right);
+            }
+
+        }
+    }
     public static int enterNum()
     {
         int n;
