@@ -137,6 +137,13 @@ class Test
                 {
                     Console.WriteLine("Первый треугольник меньше второго.");
                 }
+
+                Console.WriteLine("Хотите выйти из программы? 1 - да, 0 - нет");
+                int exit = EnterNum(0, 1);
+                if (exit == 1)
+                {
+                    break;
+                }
             }
         }
     }
