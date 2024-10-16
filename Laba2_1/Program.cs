@@ -1,24 +1,16 @@
-﻿//1_10
+using System;
 class TimeGap
 {
     protected bool isStart;
     protected bool isEnd;
-
-    public bool GetIsStart()
-    {
-        return isStart;
+    
+    public bool IsStart {
+        get { return isStart; }
+        set { isStart = value; }
     }
-    public bool GetIsEnd()
-    {
-        return isEnd;
-    }
-    public void SetIsStart(bool isStart)
-    {
-        this.isStart = isStart;
-    }
-    public void SetIsEnd(bool isEnd)
-    {
-        this.isEnd = isEnd;
+    public bool IsEnd {
+        set { isEnd = value; }
+        get { return isEnd; }
     }
 
     public override String ToString()
@@ -66,15 +58,11 @@ class TimeGap
 class Day : TimeGap
 {
     private DayOfWeek dayOfWeek;
-
-    public void SetDayOfWeek(DayOfWeek dayOfWeek)
+    
+    public DayOfWeek DayOfWeek
     {
-        this.dayOfWeek = dayOfWeek;
-    }
-
-    public DayOfWeek GetDayOfWeek()
-    {
-        return this.dayOfWeek;
+        set { dayOfWeek = value; }
+        get { return dayOfWeek; }
     }
 
     public Day(DayOfWeek dayOfWeek, TimeGap timeGap) : base(timeGap)
@@ -134,15 +122,15 @@ class Test
                 Console.WriteLine("{0}-ый gap", i);
                 Console.WriteLine(gap.ToString());
                 Console.WriteLine("Временной промежуток истек: " + gap.IsOver());
-                gap.SetIsStart(false);
-                Console.WriteLine("Временной промежуток закончился: " + gap.GetIsEnd());
+                gap.IsStart = false;
+                Console.WriteLine("Временной промежуток закончился: " + gap.IsEnd);
                 i++;
             }
             Day day = new Day();
             Day monday = new Day(DayOfWeek.Monday, new TimeGap(true, true));
-            day.SetDayOfWeek(DayOfWeek.Sunday);
-            Console.WriteLine(day.ToString() + " это день - " + day.GetDayOfWeek().ToString());
-            Console.WriteLine(monday.ToString() + " это день - " + monday.GetDayOfWeek().ToString());
+            day.DayOfWeek = DayOfWeek.Sunday;
+            Console.WriteLine(day.ToString() + " это день - " + day.DayOfWeek.ToString());
+            Console.WriteLine(monday.ToString() + " это день - " + monday.DayOfWeek.ToString());
         }
         else
         {
@@ -164,8 +152,8 @@ class Test
                     Console.WriteLine("{0}-ый gap", i);
                     Console.WriteLine(gap.ToString());
                     Console.WriteLine("Временной промежуток истек: " + gap.IsOver());
-                    gap.SetIsStart(false);
-                    Console.WriteLine("Временной промежуток закончился: " + gap.GetIsEnd());
+                    gap.IsStart = false;
+                    Console.WriteLine("Временной промежуток закончился: " + gap.IsEnd);
                     i++;
                 }
 
@@ -180,11 +168,11 @@ class Test
                 Day day2 = new Day((DayOfWeek)d, new TimeGap(start, over));
 
                 Console.WriteLine();
-                dayNext.SetDayOfWeek(day2.nextDay().GetDayOfWeek());
-                dayPrev.SetDayOfWeek(day2.prevDay().GetDayOfWeek());
-                Console.WriteLine(dayNext.ToString() + " это день - " + dayNext.GetDayOfWeek().ToString());
-                Console.WriteLine(day2.ToString() + " это день - " + day2.GetDayOfWeek().ToString());
-                Console.WriteLine(dayPrev.ToString() + " это день - " + dayPrev.GetDayOfWeek().ToString());
+                dayNext.DayOfWeek = day2.nextDay().DayOfWeek;
+                dayPrev.DayOfWeek = day2.prevDay().DayOfWeek;
+                Console.WriteLine(dayNext.ToString() + " это день - " + dayNext.DayOfWeek.ToString());
+                Console.WriteLine(day2.ToString() + " это день - " + day2.DayOfWeek.ToString());
+                Console.WriteLine(dayPrev.ToString() + " это день - " + dayPrev.DayOfWeek.ToString());
 
                 Console.WriteLine("Хотите выйти из программы? 1 - да, 0 - нет");
                 int exit = EnterNum(0, 1);
