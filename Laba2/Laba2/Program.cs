@@ -1,34 +1,24 @@
+﻿using System;
+﻿
 ﻿class Triangle
 {
     private double a;
     private double b;
     private double c;
-
-    public double GetA()
-    {
-        return a;
+    
+    public double A {
+        set {a = value;}
+        get {return a;}
     }
-    public double GetB()
-    {
-        return b;
+    public double B {
+        set {b = value;}
+        get {return b;}
     }
-    public double GetC()
-    {
-        return c;
+    public double C {
+        set {c = value;}
+        get {return C;}
     }
-    public void SetA(double x)
-    {
-        a = x;
-    }
-    public void SetB(double x)
-    {
-        b = x;
-    }
-    public void SetC(double x)
-    {
-        c = x;
-    }
-
+    
     public Triangle()
     {
         a=0;
@@ -100,9 +90,9 @@ class Test
                 b = EnterNum();
                 c = EnterNum();
 
-                t.SetA(a);
-                t.SetB(b);
-                t.SetC(c);
+                t.A = a;
+                t.B = b;
+                t.C = c;
 
                 Console.WriteLine("Триугольник со сторнами {0} {1} {2} существует: " + t.isExist(), a, b, c);
 
@@ -110,9 +100,9 @@ class Test
                 while(!t.isExist())
                 {
                     Console.WriteLine("Треугольника не существует, введите новые значения длин: ");
-                    t.SetA(EnterNum());
-                    t.SetB(EnterNum());
-                    t.SetC(EnterNum());
+                    t.A = EnterNum();
+                    t.B = EnterNum();
+                    t.C = EnterNum();
                 }
                 Console.WriteLine("Площадь труголника = {0}", -t);
 
