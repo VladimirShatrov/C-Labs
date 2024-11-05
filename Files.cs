@@ -120,15 +120,19 @@ public class Files
     public static int SquareOfDifferenceOfMaxAndMin(String path)
     {
         int max = int.MinValue, min = int.MaxValue;
-        using (StreamReader file = new StreamReader(path))
+        using (FileStream f = new FileStream(path, FileMode.Open, FileAccess.Read))
+        using (StreamReader file = new StreamReader(f))
         {
             while (!file.EndOfStream)
             {
-                int n = file.Read();
-                if (n > max)
-                    max = n;
-                if (n < min)
-                    min = n;
+                string line = file.ReadLine();
+                if (int.TryParse(line, out int n))
+                {
+                    if (n > max)
+                        max = n;
+                    if (n < min)
+                        min = n;
+                }
             }
         }
         return (max - min) * (max - min);
@@ -140,7 +144,8 @@ public class Files
         Console.WriteLine("Количество чисел в файле: ");
         int n = enterNum(1);
         Random rnd = new Random();
-        using (StreamWriter file = new StreamWriter(path))
+        using (FileStream f = new FileStream(path, FileMode.Create, FileAccess.Write))
+        using (StreamWriter file = new StreamWriter(f))
         {
             for (int i = 0; i < n; i++)
             {
@@ -158,10 +163,13 @@ public class Files
         {
             while (!file.EndOfStream)
             {
-                int n = file.Read();
-                if (n % 2 != 0)
+                string line = file.ReadLine();
+                if (int.TryParse(line, out int n))
                 {
-                    sum += n;
+                    if (n % 2 != 0)
+                    {
+                        sum += n;
+                    }
                 }
             }
         }

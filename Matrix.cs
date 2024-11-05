@@ -169,7 +169,7 @@ public class Matrix
         {
             throw new ArgumentException("Количесвто столбцов первой матрицы должно быть равно количесвту строквторой.");
         }
-        Matrix matrix = new Matrix(n_b, m_a, true);
+        Matrix matrix = new Matrix(n_a, m_b, true);
 
         for (int i = 0; i < n_a; i++)
         {
@@ -188,7 +188,7 @@ public class Matrix
     public static Matrix operator +(Matrix a, Matrix b)
     {
         int n_a = a.Arr.GetLength(0), n_b = b.Arr.GetLength(0), m_a = a.Arr.GetLength(1), m_b = b.Arr.GetLength(1);
-        if (m_a != m_b && n_a != n_b) { throw new ArgumentException("Размерности матриц должы быть равны."); }
+        if (m_a != m_b || n_a != n_b) { throw new ArgumentException("Размерности матриц должы быть равны."); }
 
         Matrix matrix = new Matrix(n_a, m_a, true);
         for (int i = 0; i < n_a; i++)
@@ -203,7 +203,7 @@ public class Matrix
         Matrix matrix = new Matrix (m, n, true);
         for (int i = 0; i < n; i++)
             for (int j = 0; j < m; j++)
-                matrix.Arr[i, j] = a.Arr[j, i];
+                matrix.Arr[j, i] = a.Arr[i, j];
         return matrix;
     }
 

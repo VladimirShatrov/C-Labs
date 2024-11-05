@@ -31,11 +31,11 @@ public class Run
         Matrix A = new Matrix();
         Matrix B = new Matrix();
         Matrix C = new Matrix();
-        int[,] m1 = {};
+        int[,] m1 = { { 1,2,3 },{ 6,7,8 },{ -1,-1,-1 } };
         A.Arr = m1;
-        int[,] m2 = {};
+        int[,] m2 = { { 2,3,8 },{ 0,-1,-3 },{ 1,1,1 } };
         C.Arr = m2;
-        int[,] m3 = {};
+        int[,] m3 = { { 1,9,8 }, { 1, 9, 8 }, { 1, 9, 8 } };
         B.Arr = m3;
         Console.WriteLine((A * T(C)) + (B * C));
 
