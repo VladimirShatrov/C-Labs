@@ -187,7 +187,12 @@ public class Files
             while (!reader.EndOfStream)
             {
                 string line = reader.ReadLine();
-                writer.WriteLine(line[line.Length - 1]);
+                if (line != null && line != "")
+                    writer.WriteLine(line[line.Length - 1]);
+                else
+                {
+                    writer.WriteLine();
+                }
             }
         }
     }
