@@ -47,6 +47,7 @@ public class Files
         }
     }
 
+    [Serializable]
     public struct Toy
     {
         public string Name;
@@ -58,10 +59,11 @@ public class Files
     {
         Console.WriteLine("Введите количество игрушек: ");
         int n = enterNum(1);
-        using (FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write))
-        using (BinaryWriter writer = new BinaryWriter(file))
-        {
-            for (int i = 0; i < n; i++)
+        using (FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write)) 
+        { 
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Toy>));
+            List<Toy> list = new List<Toy>();
+            for (int i = 0; i < n; i++) 
             {
                 Toy toy = new Toy();
                 Console.WriteLine("Имя игрушки: ");
@@ -69,18 +71,15 @@ public class Files
                 {
                     toy.Name = Console.ReadLine();
                 }
+
                 Console.WriteLine("Цена игрушки: ");
                 toy.Price = enterDoubleNum(0);
-
-                Console.WriteLine("Возрастные границы: ");
-                toy.AgeGap.Item1 = enterNum(0);
+                Console.WriteLine("Возрастные границы: "); 
+                toy.AgeGap.Item1 = enterNum(0); 
                 toy.AgeGap.Item2 = enterNum(toy.AgeGap.Item1);
-
-                writer.Write(toy.Name);
-                writer.Write(toy.Price);
-                writer.Write(toy.AgeGap.Item1);
-                writer.Write(toy.AgeGap.Item2);
+                list.Add(toy);
             }
+            serializer.Serialize(file, list);
         }
     }
 
@@ -88,29 +87,19 @@ public class Files
     public static String LessExpensiveToy(String path)
     {
         String nameLessExpensiveToy = "";
+        List<Toy> toys;
         double minPrice = double.MaxValue;
         using (FileStream file = new FileStream(path, FileMode.Open, FileAccess.Read))
-        using (BinaryReader reader = new BinaryReader(file))
         {
-            while (file.Position != file.Length)
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Toy>));
+            toys = (List<Toy>)serializer.Deserialize(file);
+            foreach (Toy toy in toys)
             {
-                try
-                {
-                    Toy toy = new Toy();
-                    toy.Name = reader.ReadString();
-                    toy.Price = reader.ReadDouble();
-                    toy.AgeGap.Item1 = reader.ReadInt32();
-                    toy.AgeGap.Item2 = reader.ReadInt32();
                     if (toy.Price < minPrice)
                     {
                         minPrice = toy.Price;
                         nameLessExpensiveToy = toy.Name;
                     }
-                }
-                catch (EndOfStreamException)
-                {
-                    break;
-                }
             }
         }
         return nameLessExpensiveToy;
