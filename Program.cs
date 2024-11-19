@@ -147,10 +147,11 @@ public class Program
         HashSet<string> anyString = AnyStudentsElective(studentesElectives);
         HashSet<string> noString = NoStudentsElective(electives, studentesElectives);
 
+        Console.WriteLine("Факльтатива, которые посещают все студенты: ");
         foreach (var i in allString) Console.WriteLine(i);
-        Console.WriteLine();
+        Console.WriteLine("Факльтатива, которые посещает хотя бы один студент: ");
         foreach (var i in anyString) Console.WriteLine(i);
-        Console.WriteLine();
+        Console.WriteLine("Факльтатива, которые не посещают студенты: ");
         foreach (var i in noString) Console.WriteLine(i);
 
         Console.WriteLine();
@@ -159,10 +160,11 @@ public class Program
         HashSet<Elective> anyElective = AnyStudentsElective(studentesElectiveObj);
         HashSet<Elective> noElective = NoStudentsElective(electivesObjects, studentesElectiveObj);
 
+        Console.WriteLine("Факльтатива, которые посещают все студенты: ");
         foreach (var i in allElective) Console.WriteLine(i);
-        Console.WriteLine();
+        Console.WriteLine("Факльтатива, которые посещает хотя бы один студент: ");
         foreach (var i in anyElective) Console.WriteLine(i);
-        Console.WriteLine();
+        Console.WriteLine("Факльтатива, которые не посещают студенты: ");
         foreach (var i in noElective) Console.WriteLine(i);
 
         Console.WriteLine();
