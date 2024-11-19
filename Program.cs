@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Xml.Linq;
 using static Laba4;
 
 public class Program
@@ -101,17 +103,29 @@ public class Program
         LinkedList<string> linkedStringList = LinkedListFromList(stringList);
         foreach (int i in linkedNumList)
         {
-            Console.WriteLine("prev: {0}, value: {1}, next: {2}");
+            var currentNode = linkedNumList.Find(i);
+            Console.WriteLine("prev: {0}, value: {1}, next: {2}",
+            currentNode?.Previous == null ? "null" : currentNode.Previous.Value.ToString(),
+            currentNode?.Value.ToString() ?? "null",
+            currentNode?.Next == null ? "null" : currentNode.Next.Value.ToString());
         }
         Console.WriteLine();
         foreach (Point i in linkedPointList)
         {
-            Console.WriteLine("prev: {0}, value: {1}, next: {2}");
+            var currentNode = linkedPointList.Find(i);
+            Console.WriteLine("prev: {0}, value: {1}, next: {2}",
+            currentNode?.Previous == null ? "null" : currentNode.Previous.Value.ToString(),
+            currentNode?.Value.ToString() ?? "null",
+            currentNode?.Next == null ? "null" : currentNode.Next.Value.ToString());
         }
         Console.WriteLine();
         foreach (string i in linkedStringList)
         {
-            Console.WriteLine("prev: {0}, value: {1}, next: {2}");
+            var currentNode = linkedStringList.Find(i);
+            Console.WriteLine("prev: {0}, value: {1}, next: {2}",
+            currentNode?.Previous == null ? "null" : currentNode.Previous.Value.ToString(),
+            currentNode?.Value.ToString() ?? "null",
+            currentNode?.Next == null ? "null" : currentNode.Next.Value.ToString());
         }
 
         //3
