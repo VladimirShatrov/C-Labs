@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -11,7 +11,8 @@ public class Laba4
 		List<T> outputList = new List<T> { inputList[0] };
 		for (int i = 1; i < inputList.Count; i++)
 		{
-			if (!EqualityComparer<T>.Default.Equals(inputList[i], inputList[i - 1]))
+			//if (!EqualityComparer<T>.Default.Equals(inputList[i], inputList[i - 1]))
+			if (!inputList[i].Equals(inputList[i - 1]))
 			{
 				outputList.Add(inputList[i]);
 			}
@@ -167,9 +168,18 @@ public class Laba4
 
 				int lessExpensive92 = int.MaxValue, lessExpensive95 = int.MaxValue, lessExpensive98 = int.MaxValue;
 				int num92 = 0, num95 = 0, num98 = 0;
-				foreach (string gasStation in companies)
+
+				int index = 0;
+				Dictionary<int, string> companiesDict = new Dictionary<int, string>();
+				foreach (var copmany in companies)
 				{
-					List<string> info = SplitSpace(gasStation);
+					companiesDict.Add(index, copmany);
+					index++;
+				}
+				
+				for (int i = 0; i < companiesDict.Count; i++)
+				{
+					List<string> info = SplitSpace(companiesDict[i]);
 					switch (info[2])
 					{
                         case "92": if (lessExpensive92 > int.Parse(info[3]))
