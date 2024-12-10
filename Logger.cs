@@ -1,5 +1,4 @@
 ﻿using System;
-using static LogMode;
 
 public class Logger
 {
@@ -11,6 +10,7 @@ public class Logger
 		if (mode == LogMode.NEW_FILE)
 		{
 			_filePath = filePath;
+			_mode = mode;
 			File.Create(filePath).Close();
 		}
         else
@@ -18,10 +18,11 @@ public class Logger
 			if (File.Exists(filePath))
 			{
 				_filePath = filePath;
+				_mode = mode;
 			}
 			else
 			{
-				throw new Exception("File with this path doesn`t exist.");
+				throw new FileNotFoundException("Не удалось найти файл по этому пути.");
 			}
         }
     }

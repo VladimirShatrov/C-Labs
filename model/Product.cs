@@ -2,42 +2,35 @@
 
 public class Product
 {
-    private int _article;
-    private string _department;
-    private string _title;
-    private string _measurement;
-    private decimal _amount;
-    private decimal _price;
-
     public int Article { get; set; }
     public string Department { get; set; }
     public string Title { get; set; }
     public string Measurement { get; set; }
-    public decimal Amount { get; set; }
-    public decimal Price { get; set; }
+    public double Amount { get; set; }
+    public double Price { get; set; }
 
-    public Product(int article, string department, string title, string measurement, decimal amount, decimal price)
+    public Product(int article, string department, string title, string measurement, double amount, double price)
     {
-        this.Article = article;
-        this.Department = department;
-        this.Title = title;
-        this.Measurement = measurement;
-        this.Amount = amount;
-        this.Price = price;
+        Article = article;
+        Department = department;
+        Title = title;
+        Measurement = measurement;
+        Amount = amount;
+        Price = price;
     }
 
     public Product(Product product)
     {
-        _amount = product.Amount;
-        _article = product.Article;
-        _department = product.Department;
-        _title = product.Title;
-        _measurement = product.Measurement;
-        _price = product.Price;
+        Amount = product.Amount;
+        Article = product.Article;
+        Department = product.Department;
+        Title = product.Title;
+        Measurement = product.Measurement;
+        Price = product.Price;
     }
 
     public override string ToString()
     {
-        return $"Artcile: {_article}, Department: {_department}, Title: {_title}, Measurement: {_measurement}, Amount: {_amount}, Price: {_price}";
+        return $"Artcile: {Article}, Department: {Department}, Title: {Title}, Measurement: {Measurement}, Amount: {Amount}, Price: {Price}";
     }
 }

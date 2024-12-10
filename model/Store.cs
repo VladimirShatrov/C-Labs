@@ -2,30 +2,28 @@
 
 public class Store
 {
-    private string _id;
-    private string _area;
-    private string _addres;
-
     public string Id { get; set; }
     public string Area { get; set; }
     public string Addres { get; set; }
 
     public Store(string id, string area, string addres)
     {
-        this.Id = id;
-        this.Area = area;
-        this.Addres = addres;
+        if (id == null || id.Trim() == string.Empty)
+            throw new ArgumentException("Id пустое.");
+        Id = id;
+        Area = area;
+        Addres = addres;
     }
 
     public Store(Store store)
     {
-        _id = store.Id;
-        _area = store.Area;
-        _addres = store.Addres;
+        Id = store.Id;
+        Area = store.Area;
+        Addres = store.Addres;
     }
 
     public override string ToString()
     {
-        return $"ID: {_id}, Area: {_area}, Addres: {_addres}";
+        return $"ID: {Id}, Area: {Area}, Addres: {Addres}";
     }
 }
